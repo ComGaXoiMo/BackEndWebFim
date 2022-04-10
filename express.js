@@ -24,16 +24,17 @@ app.post('/api/user/userSignUp',function (req,res){
     controlers.signUp(req).then(function (values){
         console.log(!values)
         if(!values){
-            res.json({err:2, data:{}});
-            return;
+            res.json({err:2 , data:"Đăng ký thất bại"});
+        return;
         }
-        res.json(values);
+            res.json({err:0 , data:"Đăng ký Thành công"});
+        return;
     })
 
 });
 
 // api đăng nhập
-app.get('/api/user/userSignIn', function (req, res) {
+app.post('/api/user/userSignIn', function (req, res) {
     if (!req.body.email || !req.body.password) { //mk hoac email bi bo trong
         res.json({ err: 1, data: {} }); 
         return;
@@ -178,7 +179,7 @@ app.post('/api/comment/addcomment',function(req,res){
 });
 
 //load coment fiml
-app.get('/api/comment/loadComment/',  function(req,res){
+app.post('/api/comment/loadComment/',  function(req,res){
     console.log(req.body.idF);
     if(!req.body.idF){
         res.json({err:1, data:{}});
